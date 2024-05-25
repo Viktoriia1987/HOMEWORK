@@ -1,0 +1,1191 @@
+{
+	"info": {
+		"_postman_id": "5c4670e7-2300-4728-98eb-b118d2ba4a55",
+		"name": "Homework18/Voinovska",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34786820"
+	},
+	"item": [
+		{
+			"name": "Created User without field name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Response time is less than 430ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(430);",
+							"});",
+							"pm.test(\"Body matches Validation error: name is invalid\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Validation error: name is invalid\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\"age\":\"42\",\r\n\"gender\":\"male\",\r\n\"city\":\"{{User City}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users",
+					"protocol": "https",
+					"host": [
+						"em",
+						"staging",
+						"api",
+						"onereach",
+						"ai"
+					],
+					"path": [
+						"http",
+						"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+						"users"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "{{User Age}}",
+							"disabled": true
+						},
+						{
+							"key": "city ",
+							"value": "{{User City}}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user with valid data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Fixed the test to check if the user name is 'Valentyn'",
+							"",
+							"pm.test(\"Response time is less than 6100ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(6100);",
+							"});",
+							"pm.test(\"User name is Valentyn\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql('Valentyn');",
+							"});",
+							"pm.test(\"User gender is male\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.gender).to.eql(\"male\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\" :\"Valentyn\",\r\n\"age\":\"42\",\r\n\"gender\":\"male\",\r\n\"city\":\"{{User City}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users",
+					"protocol": "https",
+					"host": [
+						"em",
+						"staging",
+						"api",
+						"onereach",
+						"ai"
+					],
+					"path": [
+						"http",
+						"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+						"users"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "{{User Age}}",
+							"disabled": true
+						},
+						{
+							"key": "city ",
+							"value": "{{User City}}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?age=user age",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\" :\"Valentyn\",\r\n\"age\":\"42\",\r\n\"gender\":\"male\",\r\n\"city\":\"{{User City}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users",
+							"protocol": "https",
+							"host": [
+								"em",
+								"staging",
+								"api",
+								"onereach",
+								"ai"
+							],
+							"path": [
+								"http",
+								"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+								"users"
+							],
+							"query": [
+								{
+									"key": "age",
+									"value": "{{User Age}}",
+									"disabled": true
+								},
+								{
+									"key": "city ",
+									"value": "{{User City}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 07:08:55 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "102"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "XpWpDhY6PHcEPTg="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"age\": 42,\n    \"city\": \"Kyiv\",\n    \"gender\": \"male\",\n    \"name\": \"Valentyn\",\n    \"id\": \"6d360734-7451-4259-ac93-6464d986353f\"\n}"
+				},
+				{
+					"name": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?age=user age",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\" :\"Valentyn\",\r\n\"age\":\"42\",\r\n\"gender\":\"male\",\r\n\"city\":\"{{User City}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users",
+							"protocol": "https",
+							"host": [
+								"em",
+								"staging",
+								"api",
+								"onereach",
+								"ai"
+							],
+							"path": [
+								"http",
+								"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+								"users"
+							],
+							"query": [
+								{
+									"key": "age",
+									"value": "{{User Age}}",
+									"disabled": true
+								},
+								{
+									"key": "city ",
+									"value": "{{User City}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 08:37:34 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "104"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "XpjoJjo_PHcEPfg="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"age\": 42,\n    \"city\": \"Boston\",\n    \"gender\": \"male\",\n    \"name\": \"Valentyn\",\n    \"id\": \"07e68806-bcfc-4957-99aa-5cd6858b4bf8\"\n}"
+				},
+				{
+					"name": "Create user with valid data",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\" :\"Valentyn\",\r\n\"age\":\"42\",\r\n\"gender\":\"male\",\r\n\"city\":\"{{User City}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users",
+							"protocol": "https",
+							"host": [
+								"em",
+								"staging",
+								"api",
+								"onereach",
+								"ai"
+							],
+							"path": [
+								"http",
+								"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+								"users"
+							],
+							"query": [
+								{
+									"key": "age",
+									"value": "{{User Age}}",
+									"disabled": true
+								},
+								{
+									"key": "city ",
+									"value": "{{User City}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 08:53:11 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "104"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "Xpl6dj56vHcEPdw="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"age\": 42,\n    \"city\": \"Boston\",\n    \"gender\": \"male\",\n    \"name\": \"Valentyn\",\n    \"id\": \"53bc1d4e-ca4e-4263-953b-be256f1b3104\"\n}"
+				},
+				{
+					"name": "Create user without field name",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\" :\"Valentyn\",\r\n\"age\":\"42\",\r\n\"gender\":\"male\",\r\n\"city\":\"{{User City}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users",
+							"protocol": "https",
+							"host": [
+								"em",
+								"staging",
+								"api",
+								"onereach",
+								"ai"
+							],
+							"path": [
+								"http",
+								"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+								"users"
+							],
+							"query": [
+								{
+									"key": "age",
+									"value": "{{User Age}}",
+									"disabled": true
+								},
+								{
+									"key": "city ",
+									"value": "{{User City}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 09:30:26 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "104"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "XprXvg5pvHcEPhQ="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"age\": 42,\n    \"city\": \"Boston\",\n    \"gender\": \"male\",\n    \"name\": \"Valentyn\",\n    \"id\": \"0c9ecf9c-f1d2-4c83-9179-3aa8b7a83259\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Check that user is created by name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 800ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"pm.test(\"Body matches id is required parameter\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id is required parameter\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{User Url}}/users?name=Valentyn",
+					"host": [
+						"{{User Url}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Valentyn"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check that user is created by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 3000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"})",
+							"",
+							"pm.test(\"User gender is male\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.gender).to.equal(\"male\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id={{user id}}",
+					"protocol": "https",
+					"host": [
+						"em",
+						"staging",
+						"api",
+						"onereach",
+						"ai"
+					],
+					"path": [
+						"http",
+						"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{user id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User city ediiting with empty body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Response time is less than 2500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2500);",
+							"});",
+							"pm.test(\"Body matches Request data is empty\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Request data is empty\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id={{user id}}",
+					"protocol": "https",
+					"host": [
+						"em",
+						"staging",
+						"api",
+						"onereach",
+						"ai"
+					],
+					"path": [
+						"http",
+						"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{user id}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id={{User ID}}",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": 42,\r\n    \"city\": \"Lviv\",\r\n    \"gender\": \"male\",\r\n    \"name\": \"Valentyn\",\r\n    \"id\": \"{{User ID}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id={{User ID}}",
+							"protocol": "https",
+							"host": [
+								"em",
+								"staging",
+								"api",
+								"onereach",
+								"ai"
+							],
+							"path": [
+								"http",
+								"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{User ID}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 07:17:50 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "102"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "XpX80jKmPHcEP7A="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"gender\": \"male\",\n    \"city\": \"Lviv\",\n    \"name\": \"Valentyn\",\n    \"id\": \"6d360734-7451-4259-ac93-6464d986353f\",\n    \"age\": 42\n}"
+				},
+				{
+					"name": "User city ediiting",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": 42,\r\n    \"city\": \"Lviv\",\r\n    \"gender\": \"male\",\r\n    \"name\": \"Valentyn\",\r\n    \"id\": \"{{user id}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id={{user id}}",
+							"protocol": "https",
+							"host": [
+								"em",
+								"staging",
+								"api",
+								"onereach",
+								"ai"
+							],
+							"path": [
+								"http",
+								"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{user id}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 08:44:57 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "102"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "XpktQgLuPHcEPgw="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"gender\": \"male\",\n    \"city\": \"Lviv\",\n    \"name\": \"Valentyn\",\n    \"id\": \"07e68806-bcfc-4957-99aa-5cd6858b4bf8\",\n    \"age\": 42\n}"
+				}
+			]
+		},
+		{
+			"name": "User city ediiting Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response time is less than 7500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(7500);",
+							"});",
+							"pm.test(\"User city is Lviv\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.city).to.eql(\"Lviv\");",
+							"});",
+							"pm.test(\"User gender is male\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.gender).to.eql(\"male\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"age\": 42,\r\n    \"city\": \"Lviv\",\r\n    \"gender\": \"male\",\r\n    \"name\": \"Valentyn\",\r\n    \"id\": \"{{user id}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id={{user id}}",
+					"protocol": "https",
+					"host": [
+						"em",
+						"staging",
+						"api",
+						"onereach",
+						"ai"
+					],
+					"path": [
+						"http",
+						"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{user id}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id={{User ID}}",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": 42,\r\n    \"city\": \"Lviv\",\r\n    \"gender\": \"male\",\r\n    \"name\": \"Valentyn\",\r\n    \"id\": \"{{User ID}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id={{User ID}}",
+							"protocol": "https",
+							"host": [
+								"em",
+								"staging",
+								"api",
+								"onereach",
+								"ai"
+							],
+							"path": [
+								"http",
+								"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{User ID}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 07:17:50 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "102"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "XpX80jKmPHcEP7A="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"gender\": \"male\",\n    \"city\": \"Lviv\",\n    \"name\": \"Valentyn\",\n    \"id\": \"6d360734-7451-4259-ac93-6464d986353f\",\n    \"age\": 42\n}"
+				},
+				{
+					"name": "User city ediiting",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": 42,\r\n    \"city\": \"Lviv\",\r\n    \"gender\": \"male\",\r\n    \"name\": \"Valentyn\",\r\n    \"id\": \"{{user id}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id={{user id}}",
+							"protocol": "https",
+							"host": [
+								"em",
+								"staging",
+								"api",
+								"onereach",
+								"ai"
+							],
+							"path": [
+								"http",
+								"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{user id}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 08:44:57 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "102"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "XpktQgLuPHcEPgw="
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"gender\": \"male\",\n    \"city\": \"Lviv\",\n    \"name\": \"Valentyn\",\n    \"id\": \"07e68806-bcfc-4957-99aa-5cd6858b4bf8\",\n    \"age\": 42\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete user by valid id copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 2800ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2800);\r",
+							"});\r",
+							"pm.test(\"Body matches User is deleted\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"User is deleted\")\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id={{user id}}",
+					"protocol": "https",
+					"host": [
+						"em",
+						"staging",
+						"api",
+						"onereach",
+						"ai"
+					],
+					"path": [
+						"http",
+						"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{user id}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id=12cf35c5-3938-46f7-a4aa-8122f91c7b45",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users?id=12cf35c5-3938-46f7-a4aa-8122f91c7b45",
+							"protocol": "https",
+							"host": [
+								"em",
+								"staging",
+								"api",
+								"onereach",
+								"ai"
+							],
+							"path": [
+								"http",
+								"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "12cf35c5-3938-46f7-a4aa-8122f91c7b45"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2024 09:10:41 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "15"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "Xpoeyh3PvHcEPgw="
+						}
+					],
+					"cookie": [],
+					"body": "User is deleted"
+				}
+			]
+		},
+		{
+			"name": "Delete user without id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"pm.test(\"Body matches No parameters received in request\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"No parameters received in request\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users",
+					"protocol": "https",
+					"host": [
+						"em",
+						"staging",
+						"api",
+						"onereach",
+						"ai"
+					],
+					"path": [
+						"http",
+						"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{user id}}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "User age",
+			"value": "42"
+		},
+		{
+			"key": "User city",
+			"value": "Boston"
+		},
+		{
+			"key": "User City",
+			"value": "Boston"
+		},
+		{
+			"key": "User Age",
+			"value": "42"
+		},
+		{
+			"key": "User Url",
+			"value": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6"
+		},
+		{
+			"key": "uuser id",
+			"value": "f0ceb850-3aff-4fc4-b20a-c2169ae40d37"
+		},
+		{
+			"key": "user id",
+			"value": "c700a021-109f-4c7c-b585-8af015547410",
+			"type": "string"
+		},
+		{
+			"key": "user city",
+			"value": "Odessa"
+		}
+	]
+}
